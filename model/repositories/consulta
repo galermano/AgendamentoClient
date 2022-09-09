@@ -1,0 +1,19 @@
+const ConsultaRepository = require('../entities/consulta');
+ async function inserirConsulta(value){
+    return await ConsultaRepository.create(value);
+}
+async function buscarTodasConsultas(){
+    return await ConsultaRepository.findAll();
+}
+async function buscarConsultaId(value){
+    return await ConsultaRepository.findByPk(value);
+}
+async function deletarConsulta(value){
+    return await ConsultaRepository.destroy({ where: { id: value }});
+}
+async function salvarOuAtualizarConsulta(value){
+    return await ConsultaRepository.upsert(value);
+}
+
+module.exports = {inserirConsulta, salvarOuAtualizarConsulta, 
+    buscarConsultaId,buscarTodasConsultas, deletarConsulta};

@@ -1,0 +1,24 @@
+const PacienteRepository = require('../entities/paciente');
+
+async function inserirPaciente(value){
+    return await PacienteRepository.create(value);
+}
+
+async function buscarTodosPacientes(){
+    return await PacienteRepository.findAll();
+}
+
+async function buscarPacienteId(value){
+    return await PacienteRepository.findByPk(value);
+}
+
+async function deletarPaciente(value){
+    return await PacienteRepository.destroy({ where: { cpf: value }});
+}
+
+async function salvarOuAtualizarPaciente(value){
+    return await PacienteRepository.upsert(value);
+}
+
+module.exports = {inserirPaciente, buscarTodosPacientes, 
+    buscarPacienteId,salvarOuAtualizarPaciente, deletarPaciente};

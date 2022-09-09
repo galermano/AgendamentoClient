@@ -1,0 +1,17 @@
+module.exports = (sequelize, _DataTypes) => {
+  const MedicoConsulta = sequelize.define('medico_consulta',
+    {},
+    { timestamps: false },
+  );
+    entities.Consulta.belongsToMany(entities.medico, { as: 'medico',
+      through: MedicoConsulta,
+      foreignKey: 'id_consulta',
+      otherKey: 'id_medico',
+    });
+    entities.Medico.belongsToMany(entities.Consulta, { as: 'consulta',
+      through: MedicoConsulta,
+      foreignKey: 'id_medico',
+      otherKey: 'id_consulta',
+    });
+    return MedicoConsulta;
+};
